@@ -516,6 +516,14 @@ public partial class NavigationView
             return;
 
         navigationView.MenuItems = enumerableNewValue;
+        navigationView.AddItemsToDictionaries();
+        navigationView.AddItemsToAutoSuggestBoxItems();
+        //navigationView.OnApplyTemplate();
+        if (navigationView.MenuItemsItemsControl != null)
+        {
+            navigationView.MenuItemsItemsControl.ItemsSource = enumerableNewValue;
+            navigationView.MenuItemsItemsControl.UpdateLayout();
+        }
     }
 
     private static void OnFooterMenuItemsSourcePropertyChanged(
@@ -527,6 +535,11 @@ public partial class NavigationView
             return;
 
         navigationView.FooterMenuItems = enumerableNewValue;
+        navigationView.AddItemsToDictionaries();
+        navigationView.AddItemsToAutoSuggestBoxItems();
+        //navigationView.OnApplyTemplate();
+        if (navigationView.FooterMenuItemsItemsControl != null)
+            navigationView.FooterMenuItemsItemsControl.ItemsSource = enumerableNewValue;
     }
 
     private static void OnPaneDisplayModePropertyChanged(
